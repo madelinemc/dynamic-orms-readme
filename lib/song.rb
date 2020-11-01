@@ -35,6 +35,8 @@ class Song
     sql = "INSERT INTO #{table_name_for_insert} (#{col_names_for_insert}) VALUES (#{values_for_insert})"
     DB[:conn].execute(sql)
     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM #{table_name_for_insert}")[0][0]
+     #Using String interpolation for a SQL query creates a SQL injection vulnerability, which we've previously stated is a bad idea as it creates a security issue, however, we're using these examples to illustrate how dynamic ORMs work.
+
   end
 
   def table_name_for_insert
@@ -56,6 +58,7 @@ class Song
   def self.find_by_name(name)
     sql = "SELECT * FROM #{self.table_name} WHERE name = '#{name}'"
     DB[:conn].execute(sql)
+    #Using String interpolation for a SQL query creates a SQL injection vulnerability, which we've previously stated is a bad idea as it creates a security issue, however, we're using these examples to illustrate how dynamic ORMs work.
   end
 
 end
